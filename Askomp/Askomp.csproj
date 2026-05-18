@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <OutputType>Library</OutputType>
+        <Nullable>enable</Nullable>
+        <UseWPF>true</UseWPF>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Configurations>Release;Debug</Configurations>
+        <Platforms>x64</Platforms>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AudioPlugSharp" Version="0.7.9" />
+      <PackageReference Include="AudioPlugSharpVst3" Version="0.7.9" />
+      <PackageReference Include="AudioPlugSharpWPF" Version="0.7.9" />
+    </ItemGroup>
+
+    <Target Name="CopyAudioPlugSharpWPF" AfterTargets="Build">
+        <Exec Command="copy &quot;$(NuGetPackageRoot)audioplugsharpwpf\0.7.9\lib\net8.0-windows7.0\AudioPlugSharpWPF.dll&quot; &quot;$(OutputPath)&quot; /Y" />
+    </Target>
+
+
+</Project>

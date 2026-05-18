@@ -1,0 +1,55 @@
+# Askomp
+
+Askomp is an asymmetrical compressor.
+It will compress the positive signal (above 0) and negative signal (below 0) separately.
+Using this plugin can make your audio kept in center, and naturally gain the max loudness.
+
+## Install
+
+I haven`t release this plugin yet.
+To install this plugin, you should [build](#compile) it.
+
+## Platforms
+Askomp currently only support windows because it is based on [AudioPlugSharp](https://github.com/mikeoliphant/AudioPlugSharp).
+Maybe in the future it will support platforms like linux or macOS.
+
+## Compile
+
+### C#
+
+The AudioPlugSharp NuGet Packages were added to the project.
+
+For build, "AudioPlugSharpWPF.dll" will be added to the build folder.
+You can copy it manually, and in this project it was handled in the csproj.
+
+Open Rider and choose x64, press build button.
+
+### Faust
+
+The Faust code is in dsp folder, you need faust to build [askomp_dsp.dsp](dsp/askomp_dsp.dsp).
+
+Open cmd and use `faust -archdir` to find your faust architecture folder.
+You should find [CSharpFaustBase.cs](dsp/CSharpFaustBase.cs) and copy it into the dsp folder.
+And you need to use cmd like
+`faust -lang csharp -i -a CSharpFaustBase.cs askomp_dsp.dsp -o <filename>.cs -double`
+and copy the file you build to Askomp folder.
+You also need to make sliders public or internal, it should be like:
+
+> #### *these will be in the class "mydsp"*  
+> internal double fVslider0;  
+internal double fHslider0;  
+int fSampleRate;  
+double fConst0;  
+internal double fHslider1;  
+double[] fRec0 = new double[2];  
+internal double fHslider2;  
+internal double fVslider1;  
+double[] fRec1 = new double[2];  
+internal double fHslider3;  
+double[] fRec2 = new double[2];  
+double[] fRec3 = new double[2];  
+
+For this project, the results is in [faustdsp.cs](Askomp/faustdsp.cs).
+
+
+
