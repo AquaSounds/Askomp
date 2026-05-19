@@ -137,6 +137,16 @@ public partial class AskompUi : UserControl
 
     #endregion
     
+    private void ThMouseDown(object sender, MouseButtonEventArgs e)
+    {
+        Mouse.Capture(sender as Border);
+    }
+    
+    private void ParamMouseUp(object sender, MouseButtonEventArgs e)
+    {
+        Mouse.Capture(null);
+    }
+    
     #region Link Button Logic
     
     private bool _linkHover = false;
@@ -330,6 +340,26 @@ public partial class AskompUi : UserControl
     
     #endregion
     
+    private void KnobMouseEnter(object sender, MouseEventArgs e)
+    {
+        if(sender is Grid grid)
+        {
+            grid.BeginAnimation(WidthProperty, new DoubleAnimation(grid.MinWidth + 2, new Duration(TimeSpan.FromSeconds(0.1))));
+            grid.BeginAnimation(HeightProperty, new DoubleAnimation(grid.MinHeight + 2, new Duration(TimeSpan.FromSeconds(0.1))));
+        }
+    }
+
+    private void KnobMouseLeave(object sender, MouseEventArgs e)
+    {
+        if(sender is Grid grid)
+        {
+            grid.BeginAnimation(WidthProperty, new DoubleAnimation(grid.MinWidth, new Duration(TimeSpan.FromSeconds(0.1))));
+            grid.BeginAnimation(HeightProperty, new DoubleAnimation(grid.MinHeight, new Duration(TimeSpan.FromSeconds(0.1))));
+        }
+    }
+
+    #region Draw Waveform
+    
     private bool _isDrawingOut = false;
     private bool _isDrawingIn = false;
     
@@ -409,7 +439,10 @@ public partial class AskompUi : UserControl
             _waveOutPosPoly.Points = p;
             _waveOutNegPoly.Points = n;
         }
-        catch { }
+        catch
+        {
+            // ignored
+        }
         finally { _isDrawingOut = false; }
     }
 
@@ -440,7 +473,10 @@ public partial class AskompUi : UserControl
             _waveInPosPoly.Points = p;
             _waveInNegPoly.Points = n;
         }
-        catch { }
+        catch
+        {
+            // ignored
+        }
         finally { _isDrawingIn = false; }
     }
     
@@ -484,40 +520,15 @@ public partial class AskompUi : UserControl
         canvas.Children.Clear();
         canvas.Children.Add(path);
     }
-
-    private void ThMouseDown(object sender, MouseButtonEventArgs e)
-    {
-        Mouse.Capture(sender as Border);
-    }
     
-    private void ParamMouseUp(object sender, MouseButtonEventArgs e)
-    {
-        Mouse.Capture(null);
-    }
+    #endregion
+
+    #region Speed Slider Logic
     
-    private void KnobMouseEnter(object sender, MouseEventArgs e)
-    {
-        if(sender is Grid grid)
-        {
-            grid.BeginAnimation(WidthProperty, new DoubleAnimation(grid.MinWidth + 2, new Duration(TimeSpan.FromSeconds(0.1))));
-            grid.BeginAnimation(HeightProperty, new DoubleAnimation(grid.MinHeight + 2, new Duration(TimeSpan.FromSeconds(0.1))));
-        }
-    }
-
-    private void KnobMouseLeave(object sender, MouseEventArgs e)
-    {
-        if(sender is Grid grid)
-        {
-            grid.BeginAnimation(WidthProperty, new DoubleAnimation(grid.MinWidth, new Duration(TimeSpan.FromSeconds(0.1))));
-            grid.BeginAnimation(HeightProperty, new DoubleAnimation(grid.MinHeight, new Duration(TimeSpan.FromSeconds(0.1))));
-        }
-    }
-
     private void SpeedSliderThumbMouseDown(object sender, MouseButtonEventArgs e)
     {
         Mouse.Capture(SpeedSliderThumb);
     }
-
 
     private void SpeedSliderThumbMouseMove(object sender, MouseEventArgs e)
     {
@@ -534,6 +545,10 @@ public partial class AskompUi : UserControl
             SpeedSliderThumb.Margin = SpeedSliderThumb.Margin with { Left = value * tick - 5 };
         }
     }
+    
+    #endregion
+    
+    #region Settings Button Logic
 
     private void SettingsButtonMouseEnter(object sender, MouseEventArgs e)
     {
@@ -556,6 +571,8 @@ public partial class AskompUi : UserControl
         SettingsBorder.Visibility =
             SettingsBorder.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
     }
+    
+    #endregion
 
     private void LinkMouseDown(object sender, MouseButtonEventArgs e)
     {
@@ -567,6 +584,9 @@ public partial class AskompUi : UserControl
                 UseShellExecute = true
             });
         }
-        catch { }
+        catch
+        {
+            // ignored
+        }
     }
 }

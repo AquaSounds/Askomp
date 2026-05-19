@@ -10,10 +10,10 @@
         <Border Background="White" Margin="5" CornerRadius="10">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackPanel>
                     <Grid>
@@ -23,12 +23,16 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <!-- Left -->
-                        <Border Grid.Column="0" Height="20" Margin="20" Background="#33000000" CornerRadius="10 0 0 10 " x:Name="LeftOutputMax">
-                            <Border Margin="5" HorizontalAlignment="Right" Background="#328cfa" Width="0" CornerRadius="5 0 0 5" x:Name="LeftOutputMeter"/>
+                        <Border Grid.Column="0" Height="20" Margin="20" Background="#33000000"
+                                CornerRadius="10 0 0 10 " x:Name="LeftOutputMax">
+                            <Border Margin="5" HorizontalAlignment="Right" Background="#328cfa" Width="0"
+                                    CornerRadius="5 0 0 5" x:Name="LeftOutputMeter" />
                         </Border>
                         <!-- Right -->
-                        <Border Grid.Column="2" Height="20" Margin="20" Background="#33000000" CornerRadius="0 10 10 0" x:Name="RightOutputMax">
-                            <Border Margin="5" HorizontalAlignment="Left" Background="#328cfa" Width="0" CornerRadius="0 5 5 0" x:Name="RightOutputMeter"/>
+                        <Border Grid.Column="2" Height="20" Margin="20" Background="#33000000" CornerRadius="0 10 10 0"
+                                x:Name="RightOutputMax">
+                            <Border Margin="5" HorizontalAlignment="Left" Background="#328cfa" Width="0"
+                                    CornerRadius="0 5 5 0" x:Name="RightOutputMeter" />
                         </Border>
                         <!-- CenterTitle -->
                         <TextBlock Grid.Column="1" Margin="20" FontSize="24" FontFamily="Odalisque NF">Askomp</TextBlock>
@@ -38,30 +42,34 @@
                     <Border Background="#666" Width="30" Margin="20 0 0 0" CornerRadius="10">
                         <Border Margin="5" Background="#66000000" CornerRadius="5">
                             <Grid>
-                                <Border Background="#666" Height="1"/>
+                                <Border Background="#666" Height="1" />
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <!-- Compressed Positive -->
                                     <Border Grid.Row="0" x:Name="PosCompressedMax">
                                         <Grid>
                                             <Border Margin="2" Height="0" Background="#328cfa" CornerRadius="3 3 0 0"
-                                                x:Name="PosCompressedMeter" VerticalAlignment="Bottom"/>
+                                                    x:Name="PosCompressedMeter" VerticalAlignment="Bottom" />
                                             <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center"
                                                        Foreground="White" Opacity="0.5"
-                                                       FontSize="10" Margin="0 2 0 0" x:Name="PosCompValue">0.0</TextBlock>
+                                                       FontSize="10" Margin="0 2 0 0" x:Name="PosCompValue">
+                                                0.0
+                                            </TextBlock>
                                         </Grid>
                                     </Border>
                                     <!-- Compressed Negative -->
                                     <Border Grid.Row="1" x:Name="NegCompressedMax">
                                         <Grid>
                                             <Border Margin="2" Height="0" Background="#328cfa" CornerRadius="0 0 3 3"
-                                                    x:Name="NegCompressedMeter" VerticalAlignment="Top"/>
+                                                    x:Name="NegCompressedMeter" VerticalAlignment="Top" />
                                             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center"
                                                        Foreground="White" Opacity="0.5"
-                                                       FontSize="10" Margin="0 0 0 2" x:Name="NegCompValue">0.0</TextBlock>
+                                                       FontSize="10" Margin="0 0 0 2" x:Name="NegCompValue">
+                                                0.0
+                                            </TextBlock>
                                         </Grid>
                                     </Border>
                                 </Grid>
@@ -73,31 +81,33 @@
                     <Border Margin="5" Background="#66000000" CornerRadius="5">
                         <Grid>
                             <!-- Center Line -->
-                            <Border Background="#666" Height="1"/>
+                            <Border Background="#666" Height="1" />
                             <Grid>
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
-                                    <Canvas Grid.Row="0" x:Name="CanPosIn"/>
-                                    <Canvas Grid.Row="1" x:Name="CanNegIn"/>
-                                    <Canvas Grid.Row="0" x:Name="CanPosOut"/>
-                                    <Canvas Grid.Row="1" x:Name="CanNegOut"/>
+                                    <Canvas Grid.Row="0" x:Name="CanPosIn" />
+                                    <Canvas Grid.Row="1" x:Name="CanNegIn" />
+                                    <Canvas Grid.Row="0" x:Name="CanPosOut" />
+                                    <Canvas Grid.Row="1" x:Name="CanNegOut" />
                                 </Grid>
                                 <Grid x:Name="WaveGrid">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <TextBlock Grid.Row="0" Foreground="#2fff" TextAlignment="Center"
                                                VerticalAlignment="Center" FontSize="20" x:Name="PosThNum"
-                                               Opacity="0"
-                                    >-0.0 dB</TextBlock>
+                                               Opacity="0">
+                                        -0.0 dB
+                                    </TextBlock>
                                     <TextBlock Grid.Row="1" Foreground="#2fff" TextAlignment="Center"
                                                VerticalAlignment="Center" FontSize="20" x:Name="NegThNum"
-                                               Opacity="0"
-                                    >-0.0 dB</TextBlock>
+                                               Opacity="0">
+                                        -0.0 dB
+                                    </TextBlock>
                                 </Grid>
                                 <!-- Positive Threshold -->
                                 <Border Height="10" Background="Transparent" VerticalAlignment="Top"
@@ -111,75 +121,86 @@
                                         MouseEnter="NegThMouseEnter" MouseLeave="NegThMouseLeave"
                                         MouseDown="ThMouseDown" MouseUp="ParamMouseUp"
                                         MouseMove="NegThMouseMove" x:Name="NegBorder">
-                                    <Border Height="1" Background="White" Opacity="0.2"></Border> 
+                                    <Border Height="1" Background="White" Opacity="0.2"></Border>
                                 </Border>
                             </Grid>
                         </Grid>
                     </Border>
                 </Border>
                 <Grid Grid.Row="2" Margin="5">
-                <Border  Height="20" Width="50" VerticalAlignment="Center"
-                        CornerRadius="10" Background="White" BorderBrush="#999" BorderThickness="2"
-                        x:Name="LinkButton"
-                        MouseEnter="LinkButtonMouseEnter" MouseLeave="LinkButtonMouseLeave"
-                        MouseDown="LinkButtonMouseDown" MouseUp="LinkButtonMouseUp">
-                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="8" FontWeight="Light" Foreground="White">
-                        LINK
-                    </TextBlock>
-                </Border>
+                    <Border Height="20" Width="50" VerticalAlignment="Center"
+                            CornerRadius="10" Background="White" BorderBrush="#999" BorderThickness="2"
+                            x:Name="LinkButton"
+                            MouseEnter="LinkButtonMouseEnter" MouseLeave="LinkButtonMouseLeave"
+                            MouseDown="LinkButtonMouseDown" MouseUp="LinkButtonMouseUp">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="8"
+                                   FontWeight="Light" Foreground="White">
+                            LINK
+                        </TextBlock>
+                    </Border>
                 </Grid>
                 <Border Grid.Row="3" Height="100" Margin="0 -10 0 0">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="1" MinWidth="80" MinHeight="80" Height="80" Width="80"
                               MouseEnter="KnobMouseEnter" MouseLeave="KnobMouseLeave"
                               HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Ellipse Fill="white" Stroke="#666" StrokeThickness="4" x:Name="RatioKnob"
                                      MouseDown="RatioKnobMouseDown" MouseUp="ParamMouseUp"
-                                     MouseMove="RatioKnobMouseMove"/>
-                            <Canvas x:Name="RatioKnobCanvas" IsHitTestVisible="False"/>
-                            <Ellipse Fill="#328cfa" Margin="8" IsHitTestVisible="False"/>
+                                     MouseMove="RatioKnobMouseMove" />
+                            <Canvas x:Name="RatioKnobCanvas" IsHitTestVisible="False" />
+                            <Ellipse Fill="#328cfa" Margin="8" IsHitTestVisible="False" />
                             <Ellipse Fill="#666" Margin="10" IsHitTestVisible="False"
-                                     Stroke="#333" StrokeThickness="2"/>
+                                     Stroke="#333" StrokeThickness="2" />
                             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
                                        FontSize="18" Foreground="White"
-                                       x:Name="RatioValue" IsHitTestVisible="False">2 : 1</TextBlock>
+                                       x:Name="RatioValue" IsHitTestVisible="False">
+                                2 : 1
+                            </TextBlock>
                         </Grid>
                         <Grid Grid.Column="0" MinWidth="50" MinHeight="50" Height="50" Width="50" Margin="10"
                               MouseEnter="KnobMouseEnter" MouseLeave="KnobMouseLeave"
                               HorizontalAlignment="Right" VerticalAlignment="Center">
                             <Ellipse Fill="white" Stroke="#666" StrokeThickness="4" x:Name="AttackKnob"
                                      MouseDown="AttackKnobMouseDown" MouseUp="ParamMouseUp"
-                                     MouseMove="AttackKnobMouseMove"/>
-                            <Canvas x:Name="AttackKnobCanvas" IsHitTestVisible="False"/>
-                            <Ellipse Fill="#328cfa" Margin="6" IsHitTestVisible="False"/>
-                            <Ellipse Fill="White" Margin="8" IsHitTestVisible="False"/>
+                                     MouseMove="AttackKnobMouseMove" />
+                            <Canvas x:Name="AttackKnobCanvas" IsHitTestVisible="False" />
+                            <Ellipse Fill="#328cfa" Margin="6" IsHitTestVisible="False" />
+                            <Ellipse Fill="White" Margin="8" IsHitTestVisible="False" />
                             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
                                        FontSize="12" Foreground="#333"
-                                       IsHitTestVisible="False">A</TextBlock>
+                                       IsHitTestVisible="False">
+                                A
+                            </TextBlock>
                             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center"
                                        FontSize="12" Foreground="#333" Margin="0 0 0 -20"
-                                       x:Name="AttackValue" IsHitTestVisible="False">10ms</TextBlock>
+                                       x:Name="AttackValue" IsHitTestVisible="False">
+                                10ms
+                            </TextBlock>
                         </Grid>
                         <Grid Grid.Column="2" MinWidth="50" MinHeight="50" Height="50" Width="50" Margin="10"
                               MouseEnter="KnobMouseEnter" MouseLeave="KnobMouseLeave"
                               HorizontalAlignment="Left" VerticalAlignment="Center">
                             <Ellipse Fill="white" Stroke="#666" StrokeThickness="4" x:Name="ReleaseKnob"
                                      MouseDown="ReleaseKnobMouseDown" MouseUp="ParamMouseUp"
-                                     MouseMove="ReleaseKnobMouseMove"/>
-                            <Canvas x:Name="ReleaseKnobCanvas" IsHitTestVisible="False"/>
-                            <Ellipse Fill="#328cfa" Margin="6" IsHitTestVisible="False"/>
-                            <Ellipse Fill="White" Margin="8" IsHitTestVisible="False"/>
+                                     MouseMove="ReleaseKnobMouseMove" />
+                            <Canvas x:Name="ReleaseKnobCanvas" IsHitTestVisible="False" />
+                            <Ellipse Fill="#328cfa" Margin="6" IsHitTestVisible="False" />
+                            <Ellipse Fill="White" Margin="8" IsHitTestVisible="False" />
                             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
                                        FontSize="12" Foreground="#333"
-                                       IsHitTestVisible="False">R</TextBlock>
+                                       IsHitTestVisible="False">
+                                R
+                            </TextBlock>
                             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center"
                                        FontSize="12" Foreground="#333" Margin="0 0 0 -20"
-                                       x:Name="ReleaseValue" IsHitTestVisible="False">50ms</TextBlock>
+                                       x:Name="ReleaseValue" IsHitTestVisible="False">
+                                50ms
+                            </TextBlock>
                         </Grid>
                     </Grid>
                 </Border>
@@ -195,39 +216,42 @@
                 BorderBrush="White" BorderThickness="5"
                 x:Name="SettingsBorder" Visibility="Collapsed">
             <Border.Effect>
-                <DropShadowEffect ShadowDepth="-10" BlurRadius="50"/>
+                <DropShadowEffect ShadowDepth="-10" BlurRadius="50" />
             </Border.Effect>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Border Background="White" Height="30" Margin="-1">
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                               FontSize="18" FontFamily="Odalisque NF"
-                    >Settings</TextBlock>
+                               FontSize="18" FontFamily="Odalisque NF">
+                        Settings
+                    </TextBlock>
                 </Border>
                 <Border Grid.Row="1">
                     <StackPanel>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <TextBlock VerticalAlignment="Center"
-                                       Margin="20" Foreground="White"
-                            >Waveform Speed:</TextBlock>
+                                       Margin="20" Foreground="White">
+                                Waveform Speed:
+                            </TextBlock>
                             <Border Grid.Column="1" Background="#666" Height="5"
                                     Margin="0 0 20 0" CornerRadius="2"
                                     x:Name="SpeedSliderTrack">
                                 <Grid>
-                                <Border Background="#328cfa" Width="0" HorizontalAlignment="Left"
-                                        x:Name="SpeedSliderBackground"/>
-                                <Ellipse Height="10" Width="10" Fill="White" Margin="-5 -10 -10 -10" HorizontalAlignment="Left"
-                                         x:Name="SpeedSliderThumb"
-                                         MouseDown="SpeedSliderThumbMouseDown" MouseUp="ParamMouseUp"
-                                         MouseMove="SpeedSliderThumbMouseMove"/>
+                                    <Border Background="#328cfa" Width="0" HorizontalAlignment="Left"
+                                            x:Name="SpeedSliderBackground" />
+                                    <Ellipse Height="10" Width="10" Fill="White" Margin="-5 -10 -10 -10"
+                                             HorizontalAlignment="Left"
+                                             x:Name="SpeedSliderThumb"
+                                             MouseDown="SpeedSliderThumbMouseDown" MouseUp="ParamMouseUp"
+                                             MouseMove="SpeedSliderThumbMouseMove" />
                                 </Grid>
                             </Border>
                         </Grid>
@@ -236,14 +260,14 @@
                 <Border Grid.Row="2" Margin="10 0 10 10" BorderBrush="#6fff" BorderThickness="0 1 0 0">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <Image Source="/Askomp;component/Assets/logo/logo.png" Margin="-20"/>
+                        <Image Source="/Askomp;component/Assets/logo/logo.png" Margin="-20" />
                         <StackPanel Grid.Column="1" Margin="10">
                             <TextBlock Foreground="White" FontSize="16" HorizontalAlignment="Center">
                                 <Bold>Askomp</Bold>
-                                <Span/>
+                                <Span />
                                 By Aqua Sounds
                             </TextBlock>
                             <Separator Height="0.5" Margin="0 10 0 0"></Separator>
@@ -251,7 +275,7 @@
                                 <TextBlock Foreground="White" FontSize="10" Margin="0 10" TextWrapping="Wrap"
                                            Width="200">
                                     <Bold>Askomp</Bold>
-                                    <Span/>
+                                    <Span />
                                     is an asymmetrical compressor.
                                     It will compress the positive signal (above 0) and negative signal (below 0) separately.
                                     Using this plugin can make your audio kept in center, and naturally gain the max loudness.
@@ -259,14 +283,15 @@
                                 <TextBlock Foreground="#6fff" FontSize="8" Margin="0 0 0 2">Used frameworks: AudioPlugSharp, Faust</TextBlock>
                                 <TextBlock Foreground="#6fff" FontSize="8" Margin="0 0 0 2">DSP: UnD3ath</TextBlock>
                                 <TextBlock Foreground="#6fff" FontSize="8" Margin="0 0 0 2">UI: UnD3ath</TextBlock>
-                                <TextBlock HorizontalAlignment="Right" Foreground="#328cfa" FontSize="10" MouseDown="LinkMouseDown"
+                                <TextBlock HorizontalAlignment="Right" Foreground="#328cfa" FontSize="10"
+                                           MouseDown="LinkMouseDown"
                                            Cursor="Hand">
-                                        aqua-sounds.top
+                                    aqua-sounds.top
                                 </TextBlock>
                             </StackPanel>
                         </StackPanel>
                     </Grid>
-                    
+
                 </Border>
             </Grid>
         </Border>
