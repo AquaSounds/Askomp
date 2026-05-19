@@ -69,8 +69,8 @@ public class Askomp : AudioPluginWPF
         Website = "aqua-sounds.top";
         Contact = "und3ath@outlook.com";
         PluginName = "Askomp";
-        PluginCategory = "Fx | Dynamic";
-        PluginVersion = "1.0.0";
+        PluginCategory = "Fx|Dynamics";
+        PluginVersion = "1.0";
 
         PluginID = GenerateIntegerId(Company + PluginName);
 
