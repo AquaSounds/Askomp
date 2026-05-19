@@ -196,10 +196,12 @@ public class Askomp : AudioPluginWPF
     }
     
     private readonly double _threshold = AudioPluginParameter.DBToLinear(-36);//把渲染波形控制在-36dB以上
-    private double[] _waveOut = new double[BufferSize], _waveIn = new double[BufferSize];//渲染波形
+    private readonly double[] _waveOut = new double[SampleSize];//渲染波形
+    private readonly double[] _waveIn = new double[SampleSize];//渲染波形
     private double _posCompTemp,_negCompTemp;
-    private const int BufferSize = 2048;
-    private int _bufferOffset = 0;
+    private const int SampleSize = 128;     //波形的分辨率
+    private int _stepCounter = 0;
+    private const int Step = 8;     //使用step来降低波形向左步进的速度
 
     public override void Process()
     {
@@ -213,17 +215,25 @@ public class Askomp : AudioPluginWPF
         int len = inL.Length;
 
         double[][] input = [inL.ToArray(), inR.ToArray()];
-        double[][] output = new double[len][];
-        for (int i = 0; i < len; i++)
-        {
-            output[i] = new double[len];
-        }
+        double[][] output = new double[2][];
+        output[0] = new double[len];
+        output[1] = new double[len];
         dsp.Compute(len,input,output);
 
         double posComp = 0, negComp = 0, oL = 0, oR = 0;
         
         double posCompValue = 0,negCompValue = 0;
-        
+
+        double maxI = 0, maxO = 0;
+
+        _stepCounter++;
+        if(_stepCounter > Step)
+        {
+            //将数组左移
+            Array.Copy(_waveIn, 1, _waveIn, 0, SampleSize - 1);
+            Array.Copy(_waveOut, 1, _waveOut, 0, SampleSize - 1);
+        }
+
         for (int i = 0; i < len; i++)
         {
             var currentOl = output[0][i];
@@ -234,13 +244,8 @@ public class Askomp : AudioPluginWPF
             var currentIr = input[1][i];
             double mixOut = (currentOl + currentOr) * 0.5;
             double mixIn = (currentIl + currentIr) * 0.5;
-            
-            if(i+_bufferOffset < BufferSize)
-            {
-                _waveOut[i+_bufferOffset] = Math.Abs(mixOut) < _threshold ? 0 : mixOut;
-                _waveIn[i+_bufferOffset] = Math.Abs(mixIn) < _threshold ? 0 : mixIn;
-            }
 
+            //Delta只是用来缓存压缩的线性值
             var posDelta = double.Abs(double.Max(mixIn,0) - double.Max(mixOut,0));
             var negDelta = double.Abs(double.Min(mixIn, 0) - double.Min(mixOut, 0));
             
@@ -252,10 +257,22 @@ public class Askomp : AudioPluginWPF
             negComp = double.Max(negComp,
                 negDelta);
             
+            //分别计算压缩的分贝值
             posCompValue = double.Abs(AudioPluginParameter.LinearToDB(1 - posComp));
             negCompValue = double.Abs(AudioPluginParameter.LinearToDB(1 - negComp));
+            
+            //判断是否为0来避免除0导致的异常
+            maxI = mixIn == 0 ? 0 : double.Max(maxI, double.Abs(mixIn)) * mixIn / double.Abs(mixIn);
+            maxO = mixOut == 0 ? 0 : double.Max(maxO, double.Abs(mixOut)) * mixOut / double.Abs(mixOut);
         }
-        
+
+        if (_stepCounter > Step)
+        {
+            _waveIn[SampleSize - 1] = Math.Abs(maxI) < _threshold ? 0 : maxI;
+            _waveOut[SampleSize - 1] = Math.Abs(maxO) < _threshold ? 0 : maxO;
+            _stepCounter = 0;
+        }
+
         //Meter Render
         ui.Dispatcher.InvokeAsync(() =>
         {
@@ -290,16 +307,9 @@ public class Askomp : AudioPluginWPF
             ui.PosCompValue.Text = _posCompTemp.ToString("0.0");
             ui.NegCompValue.Text = _negCompTemp.ToString("0.0");
             
-            if(_bufferOffset > BufferSize)
-            {
-                ui.DrawWaveOut(_waveOut);
-                ui.DrawWaveIn(_waveIn);
-                _bufferOffset = 0;
-            }
-            else
-            {
-                _bufferOffset += len;
-            }
+            ui.DrawWaveOut(_waveOut);
+            ui.DrawWaveIn(_waveIn);
+            
         });
     }
 
