@@ -44,7 +44,7 @@ Open Rider and choose x64, press build button.
 The Faust code is in dsp folder, you need faust to build [askomp_dsp.dsp](dsp/askomp_dsp.dsp).
 
 Open cmd and use `faust -archdir` to find your faust architecture folder.
-You should find [CSharpFaustBase.cs](dsp/CSharpFaustBase.cs) and copy it into the dsp folder.
+You should find "CSharpFaustBase.cs" and copy it into the dsp folder.
 And you need to use cmd like
 `faust -lang csharp -i -a CSharpFaustBase.cs askomp_dsp.dsp -o <filename>.cs -double`
 and copy the file you build to Askomp folder.
