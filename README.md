@@ -16,6 +16,7 @@ This is fixed and not editable.
 ## Install
 
 #### Manually
+Install [font](Askomp/Assets/fonts/OdalisqueNf-POwg.ttf).
 Extract Askomp.vst3 folder and copy it to your VST3 directory.
 #### Installer
 Open Installer and install.
