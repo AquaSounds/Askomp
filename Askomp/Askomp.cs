@@ -20,6 +20,8 @@
  */
 
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Controls;
 using Askomp.UI;
 using AudioPlugSharp;
@@ -52,6 +54,15 @@ public class Askomp : AudioPluginWPF
     private readonly AskompDsp dsp = new AskompDsp();
     private AskompUi ui;
 
+    private ulong GenerateIntegerId(string seedString)
+    {
+        var bytes = Encoding.UTF8.GetBytes(seedString);
+        SHA256 hashAlg = SHA256.Create();
+        byte[] hash = hashAlg.ComputeHash(bytes);
+        ulong num = BitConverter.ToUInt64(hash);
+        return num;
+    }
+    
     public Askomp()
     {
         Company = "Aqua Sounds";
@@ -61,7 +72,7 @@ public class Askomp : AudioPluginWPF
         PluginCategory = "Fx | Dynamic";
         PluginVersion = "1.0.0";
 
-        PluginID = 0x1E92758E710B4947;
+        PluginID = GenerateIntegerId(Company + PluginName);
 
         HasUserInterface = true;
         EditorWidth = 500;
