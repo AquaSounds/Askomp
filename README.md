@@ -15,9 +15,9 @@ This is fixed and not editable.
 
 ## Install
 
-### Manul
+#### Manually
 Extract Askomp.vst3 folder and copy it to your VST3 directory.
-### Installer
+#### Installer
 Open Installer and install.
 
 ## Platforms
