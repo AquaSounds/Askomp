@@ -276,9 +276,9 @@
                                            Width="200">
                                     <Bold>Askomp</Bold>
                                     <Span />
-                                    is an asymmetrical compressor.
-                                    It will compress the positive signal (above 0) and negative signal (below 0) separately.
-                                    Using this plugin can make your audio kept in center, and naturally gain the max loudness.
+                                    Askomp is an asymmetrical compressor.
+                                    It will compress the positive signal (above zero) and negative signal (below zero) separately.
+                                    Using this plugin can make your audio kept in center, and naturally gain high perceived loudness.
                                 </TextBlock>
                                 <TextBlock Foreground="#6fff" FontSize="8" Margin="0 0 0 2">Used frameworks: AudioPlugSharp, Faust</TextBlock>
                                 <TextBlock Foreground="#6fff" FontSize="8" Margin="0 0 0 2">DSP: UnD3ath</TextBlock>
