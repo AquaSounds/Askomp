@@ -15,8 +15,10 @@ This is fixed and not editable.
 
 ## Install
 
-I haven`t release this plugin yet.
-To install this plugin, you should [build](#compile) it.
+### Manul
+Extract Askomp.vst3 folder and copy it to your VST3 directory.
+### Installer
+Open Installer and install.
 
 ## Platforms
 Askomp currently only support windows because it is based on [AudioPlugSharp](https://github.com/mikeoliphant/AudioPlugSharp).
