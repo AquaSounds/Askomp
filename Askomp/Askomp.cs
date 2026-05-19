@@ -201,8 +201,13 @@ public class Askomp : AudioPluginWPF
     private double _posCompTemp,_negCompTemp;
     private const int SampleSize = 128;     //波形的分辨率
     private int _stepCounter = 0;
-    private const int Step = 8;     //使用step来降低波形向左步进的速度
+    private int _step = 8;     //使用step来降低波形向左步进的速度
 
+    public void SetStep(int value)
+    {
+        _step = 9 - value;
+    }
+    
     public override void Process()
     {
         base.Process();
@@ -227,7 +232,7 @@ public class Askomp : AudioPluginWPF
         double maxI = 0, maxO = 0;
 
         _stepCounter++;
-        if(_stepCounter > Step)
+        if(_stepCounter > _step)
         {
             //将数组左移
             Array.Copy(_waveIn, 1, _waveIn, 0, SampleSize - 1);
@@ -266,7 +271,7 @@ public class Askomp : AudioPluginWPF
             maxO = mixOut == 0 ? 0 : double.Max(maxO, double.Abs(mixOut)) * mixOut / double.Abs(mixOut);
         }
 
-        if (_stepCounter > Step)
+        if (_stepCounter > _step)
         {
             _waveIn[SampleSize - 1] = Math.Abs(maxI) < _threshold ? 0 : maxI;
             _waveOut[SampleSize - 1] = Math.Abs(maxO) < _threshold ? 0 : maxO;

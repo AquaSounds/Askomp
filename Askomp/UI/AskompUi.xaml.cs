@@ -1,8 +1,10 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Askomp.UI;
@@ -510,5 +512,61 @@ public partial class AskompUi : UserControl
             grid.BeginAnimation(HeightProperty, new DoubleAnimation(grid.MinHeight, new Duration(TimeSpan.FromSeconds(0.1))));
         }
     }
-    
+
+    private void SpeedSliderThumbMouseDown(object sender, MouseButtonEventArgs e)
+    {
+        Mouse.Capture(SpeedSliderThumb);
+    }
+
+
+    private void SpeedSliderThumbMouseMove(object sender, MouseEventArgs e)
+    {
+        if(SpeedSliderThumb.IsMouseCaptured)
+        {
+            var width = SpeedSliderTrack.ActualWidth;
+            var tick = width / (8 - 1);
+            var value = e.GetPosition(SpeedSliderTrack).X;
+            value = double.Clamp(value,0,width);
+            //tick表示speed的值
+            value = double.Round(value / tick, 0);
+            Plugin.SetStep((int)value);
+            SpeedSliderBackground.Width = value * tick;
+            SpeedSliderThumb.Margin = SpeedSliderThumb.Margin with { Left = value * tick - 5 };
+        }
+    }
+
+    private void SettingsButtonMouseEnter(object sender, MouseEventArgs e)
+    {
+        if (sender is Border border)
+        {
+            border.Background = Brushes.DarkGray;
+        }
+    }
+
+    private void SettingsButtonMouseLeave(object sender, MouseEventArgs e)
+    {
+        if (sender is Border border)
+        {
+            border.Background = Brushes.White;
+        }
+    }
+
+    private void SettingsButtonMouseDown(object sender, MouseButtonEventArgs e)
+    {
+        SettingsBorder.Visibility =
+            SettingsBorder.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+    }
+
+    private void LinkMouseDown(object sender, MouseButtonEventArgs e)
+    {
+        try
+        {
+            string url = "https://aqua-sounds.top";
+            Process.Start(new ProcessStartInfo(url)
+            {
+                UseShellExecute = true
+            });
+        }
+        catch { }
+    }
 }

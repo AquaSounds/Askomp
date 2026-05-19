@@ -17,6 +17,13 @@
       <PackageReference Include="AudioPlugSharpWPF" Version="0.7.9" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Assets\logo\logo.png" />
+      <Resource Include="Assets\logo\logo.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+    </ItemGroup>
+
     <Target Name="CopyAudioPlugSharpWPF" AfterTargets="Build">
         <Exec Command="copy &quot;$(NuGetPackageRoot)audioplugsharpwpf\0.7.9\lib\net8.0-windows7.0\AudioPlugSharpWPF.dll&quot; &quot;$(OutputPath)&quot; /Y" />
     </Target>
