@@ -449,8 +449,8 @@ public partial class AskompUi : UserControl
                 double x = i * w / count;
                 double s = data[i];
 
-                p.Add(new Point(x, h - Math.Max(s, 0) * h));
-                n.Add(new Point(x, -Math.Min(s, 0) * h));
+                p.Add(new Point(x, double.Min(h - Math.Max(s, 0) * h,h)));
+                n.Add(new Point(x, -double.Min(Math.Min(s, 0) * h,h)));
             }
 
             p.Add(new Point(w, h));
@@ -486,8 +486,8 @@ public partial class AskompUi : UserControl
                 double x = i * w / count;
                 double s = data[i];
 
-                p.Add(new Point(x, h - Math.Max(s, 0) * h));
-                n.Add(new Point(x, -Math.Min(s, 0) * h));
+                p.Add(new Point(x, double.Min(h - Math.Max(s, 0) * h,h)));
+                n.Add(new Point(x, -double.Min(Math.Min(s, 0) * h,h)));
             }
 
             _waveInPosPoly.Points = p;
