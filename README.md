@@ -15,11 +15,9 @@ This is fixed and not editable.
 
 ## Install
 
-#### Manually
+### Manually
 Install [font](Askomp/Assets/fonts/OdalisqueNf-POwg.ttf).
-Extract Askomp.vst3 folder and copy it to your VST3 directory.
-#### Installer
-Open Installer and install.
+Build the project and copy all the files to a folder (like Askomp.vst3) in your VST3 directory.
 
 ## Platforms
 Askomp currently only support windows because it is based on [AudioPlugSharp](https://github.com/mikeoliphant/AudioPlugSharp).
