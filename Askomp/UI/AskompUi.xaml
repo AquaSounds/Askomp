@@ -109,10 +109,10 @@
                                         <RowDefinition Height="*" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
-                                    <Canvas Grid.Row="0" x:Name="CanPosIn" />
-                                    <Canvas Grid.Row="1" x:Name="CanNegIn" />
-                                    <Canvas Grid.Row="0" x:Name="CanPosOut" />
-                                    <Canvas Grid.Row="1" x:Name="CanNegOut" />
+                                    <Canvas Grid.Row="0" x:Name="CanPosIn" ClipToBounds="True"/>
+                                    <Canvas Grid.Row="1" x:Name="CanNegIn" ClipToBounds="True"/>
+                                    <Canvas Grid.Row="0" x:Name="CanPosOut" ClipToBounds="True"/>
+                                    <Canvas Grid.Row="1" x:Name="CanNegOut" ClipToBounds="True"/>
                                 </Grid>
                                 <Grid x:Name="WaveGrid">
                                     <Grid.RowDefinitions>
