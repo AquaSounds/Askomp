@@ -1,3 +1,13 @@
+**SEE ASKOMPX**
+
+A Rust rewrite (By AI) built on [nih-plug](https://github.com/robbert-vdh/nih-plug), with VST3 and CLAP
+builds for Windows, Linux and macOS, lives in repository:
+**[xUnD3athx/AskompX](https://github.com/xUnD3athx/AskompX)**.
+
+If you want to use the plugin, see AskompX. 
+If you want to learn coding, see this project.
+I do not guarantee the code is great, but this project is mostly human wrote.
+
 # Askomp
 
 Askomp is an **asymmetrical** compressor.
@@ -65,6 +75,3 @@ double[] fRec2 = new double[2];
 double[] fRec3 = new double[2];  
 ```
 For this project, the results is in [faustdsp.cs](Askomp/faustdsp.cs).
-
-
-
